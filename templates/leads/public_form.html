@@ -5,7 +5,8 @@
     Contact {{ user.username }}
 </h2>
 
-<div class="bg-card p-6 rounded-2xl shadow-xl">
+
+<div class="bg-card p-6 rounded-2xl shadow-xl fade-in">
 
     <form method="POST" class="space-y-4">
         {% csrf_token %}
@@ -19,7 +20,7 @@
         <textarea name="message" placeholder="Your Message"
             class="w-full p-3 rounded-xl bg-gray-700"></textarea>
 
-        <button class="w-full py-3 rounded-xl bg-gradient-to-r from-accent to-accent2">
+        <button class="w-full py-3 rounded-xl bg-gradient-to-r from-accent to-accent2 btn-press hover:scale-[1.02] transition duration-200">
             Send Message
         </button>
     </form>

@@ -1,46 +1,56 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="flex justify-between items-center mb-6">
+
+<div class="flex justify-between items-center mb-6 fade-in">
     <h2 class="text-2xl font-bold">Dashboard</h2>
     <span class="px-3 py-1 bg-accent2 text-black rounded-full text-xs">
         {{ subscription.tier|upper }}
     </span>
 </div>
 
-<!-- Leads Card -->
-<div class="bg-card p-5 rounded-2xl mb-4 shadow-lg">
-    <h3 class="text-lg font-semibold">Leads</h3>
-    <p class="text-2xl mt-2">{{ lead_count }}</p>
+<div class="stagger">
+    <!-- Leads Card -->
+    <div class="bg-card p-5 rounded-2xl mb-4 shadow-lg hover-lift fade-in">
+        <h3 class="text-lg font-semibold">Leads</h3>
+        <p class="text-2xl mt-2">{{ lead_count }}</p>
 
-    <a href="/leads/"
-         class="block mt-4 text-center py-2 rounded-xl bg-accent hover:bg-indigo-500">
-         View Leads
-    </a>
-</div>
+        <a href="/leads/"
+             class="block mt-4 text-center py-2 rounded-xl bg-accent btn-press glow">
+             View Leads
+        </a>
+    </div>
 
-<!-- Public Link -->
-<div class="bg-card p-5 rounded-2xl mb-4 shadow-lg">
-    <h3 class="text-lg font-semibold">Your Lead Page</h3>
+    <!-- Public Link -->
+    <div class="bg-card p-5 rounded-2xl mb-4 shadow-lg hover-lift fade-in">
+        <h3 class="text-lg font-semibold">Your Lead Page</h3>
 
-    <p class="text-sm text-gray-400 break-all mt-2">
-        /u/{{ user.username }}/
-    </p>
+        <p class="text-sm text-gray-400 break-all mt-2">
+            /u/{{ user.username }}/
+        </p>
 
-    <a href="/u/{{ user.username }}/"
-         class="block mt-4 text-center py-2 rounded-xl bg-gradient-to-r from-accent to-accent2">
-         Open Form
-    </a>
-</div>
+        <a href="/u/{{ user.username }}/"
+             class="block mt-4 text-center py-2 rounded-xl bg-gradient-to-r from-accent to-accent2 btn-press">
+             Open Form
+        </a>
+        <button onclick="copyLink()" class="mt-2 text-sm text-accent2 hover:underline">Copy Link</button>
+        <script>
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.origin + "/u/{{ user.username }}/");
+            alert("Link copied!");
+        }
+        </script>
+    </div>
 
-<!-- Upgrade -->
-<div class="bg-card p-5 rounded-2xl shadow-lg">
-    <h3 class="text-lg font-semibold">Upgrade</h3>
+    <!-- Upgrade -->
+    <div class="bg-card p-5 rounded-2xl shadow-lg hover-lift fade-in">
+        <h3 class="text-lg font-semibold">Upgrade</h3>
 
-    <a href="/pricing/"
-         class="block mt-4 text-center py-2 rounded-xl bg-accent2 text-black">
-         View Plans
-    </a>
+        <a href="/pricing/"
+             class="block mt-4 text-center py-2 rounded-xl bg-accent2 text-black btn-press">
+             View Plans
+        </a>
+    </div>
 </div>
 
 {% endblock %}
