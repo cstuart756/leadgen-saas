@@ -19,5 +19,23 @@ def lead_capture(request, username):
 
 @login_required
 def lead_list(request):
-	leads = Lead.objects.filter(user=request.user).order_by('-created_at')
-	return render(request, 'leads/lead_list.html', {'leads': leads})
+	user = request.user
+	leads = Lead.objects.filter(user=user).order_by('-created_at')
+	# Analytics: count by status
+	analytics = {
+		'total': leads.count(),
+		'new': leads.filter(status='new').count(),
+		'contacted': leads.filter(status='contacted').count(),
+		'done': leads.filter(status='done').count(),
+	}
+	# Status change (Pro/Premium only)
+	tier = getattr(getattr(user, 'userprofile', None), 'tier', 'basic')
+	if request.method == 'POST' and tier in ['pro', 'premium']:
+		lead_id = request.POST.get('lead_id')
+		new_status = request.POST.get('status')
+		lead = Lead.objects.filter(id=lead_id, user=user).first()
+		if lead and new_status in dict(Lead._meta.get_field('status').choices):
+			lead.status = new_status
+			lead.save()
+		return redirect('lead_list')
+	return render(request, 'leads/lead_list.html', {'leads': leads, 'analytics': analytics, 'tier': tier})

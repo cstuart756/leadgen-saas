@@ -1,4 +1,10 @@
 <h2>Your Leads</h2>
+<div class="analytics">
+  <strong>Total:</strong> {{ analytics.total }} |
+  <span style="color:#6366f1">New:</span> {{ analytics.new }} |
+  <span style="color:#22d3ee">Contacted:</span> {{ analytics.contacted }} |
+  <span style="color:#f1f5f9">Done:</span> {{ analytics.done }}
+</div>
 <table>
   <tr>
     <th>Name</th>
@@ -6,6 +12,7 @@
     <th>Message</th>
     <th>Status</th>
     <th>Received</th>
+    {% if tier in 'pro premium' %}<th>Change Status</th>{% endif %}
   </tr>
   {% for lead in leads %}
   <tr>
@@ -14,8 +21,31 @@
     <td>{{ lead.message }}</td>
     <td>{{ lead.get_status_display }}</td>
     <td>{{ lead.created_at }}</td>
+    {% if tier in 'pro premium' %}
+    <td>
+      <form method="post" style="display:inline;">
+        {% csrf_token %}
+        <input type="hidden" name="lead_id" value="{{ lead.id }}" />
+        <select name="status">
+          {% for value, label in lead._meta.get_field('status').choices %}
+            <option value="{{ value }}" {% if lead.status == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit">Update</button>
+      </form>
+    </td>
+    {% endif %}
   </tr>
   {% empty %}
-  <tr><td colspan="5">No leads yet.</td></tr>
+  <tr><td colspan="6">No leads yet.</td></tr>
   {% endfor %}
 </table>
+<div class="priority-support">
+  {% if tier == 'premium' %}
+    <p><strong>Priority Support:</strong> Contact us at <a href="mailto:support@leadflow.com">support@leadflow.com</a></p>
+  {% elif tier == 'pro' %}
+    <p><strong>Priority Support:</strong> Upgrade to Premium for priority support.</p>
+  {% else %}
+    <p><strong>Priority Support:</strong> Available on Premium plan.</p>
+  {% endif %}
+</div>
