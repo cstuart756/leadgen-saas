@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Choose Your Plan</h2>
+
+<div class="card">
+    <h3>Basic</h3>
+    <p>£10/month</p>
+    <button class="btn" onclick="subscribe('basic')">Choose</button>
+</div>
+
+<div class="card">
+    <h3>Pro</h3>
+    <p>£25/month</p>
+    <button class="btn" onclick="subscribe('pro')">Choose</button>
+</div>
+
+<div class="card">
+    <h3>Premium</h3>
+    <p>£50/month</p>
+    <button class="btn" onclick="subscribe('premium')">Choose</button>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+const stripe = Stripe("pk_test_...");
+
+function subscribe(plan) {
+    fetch(`/billing/subscribe/${plan}/`)
+        .then(res => res.json())
+        .then(data => stripe.redirectToCheckout({ sessionId: data.id }));
+}
+</script>
+
+{% endblock %}

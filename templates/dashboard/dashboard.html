@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="topbar">
+    <h2>LeadFlow</h2>
+    <span class="badge">{{ subscription.tier|upper }}</span>
+</div>
+
+<div class="card">
+    <h3>Leads</h3>
+    <p>{{ lead_count }} total leads</p>
+    <a href="/leads/">View Leads</a>
+</div>
+
+<div class="card">
+    <h3>Quick Actions</h3>
+    <a href="/u/{{ user.username }}/" class="btn">Open Public Form</a>
+</div>
+
+<div class="card">
+    <h3>Upgrade</h3>
+    <p>Unlock more features</p>
+    <a href="/pricing/" class="btn">View Plans</a>
+</div>
+
+<a href="/logout/">Logout</a>
+
+{% endblock %}

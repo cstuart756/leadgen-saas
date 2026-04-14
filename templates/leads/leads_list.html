@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Your Leads</h2>
+
+{% for lead in leads %}
+<div class="card">
+    <h3>{{ lead.name }}</h3>
+    <p>{{ lead.email }}</p>
+    <p>{{ lead.message }}</p>
+
+    <p>Status: {{ lead.status }}</p>
+</div>
+{% empty %}
+<p>No leads yet.</p>
+{% endfor %}
+
+<a href="/dashboard/">Back</a>
+
+{% endblock %}
