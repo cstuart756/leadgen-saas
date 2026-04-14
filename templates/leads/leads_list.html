@@ -1,21 +1,18 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<h2>Your Leads</h2>
+<h2 class="text-2xl font-bold mb-4">Your Leads</h2>
 
 {% for lead in leads %}
-<div class="card">
-    <h3>{{ lead.name }}</h3>
-    <p>{{ lead.email }}</p>
-    <p>{{ lead.message }}</p>
+<div class="bg-card p-4 rounded-2xl mb-3 shadow">
+    <h3 class="font-semibold">{{ lead.name }}</h3>
+    <p class="text-sm text-gray-400">{{ lead.email }}</p>
+    <p class="mt-2">{{ lead.message }}</p>
 
-    <p>Status: {{ lead.status }}</p>
+    <span class="inline-block mt-3 px-3 py-1 text-xs rounded-full bg-accent">
+        {{ lead.status }}
+    </span>
 </div>
-{% empty %}
-<p>No leads yet.</p>
 {% endfor %}
-
-<a href="/dashboard/">Back</a>
 
 {% endblock %}

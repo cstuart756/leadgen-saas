@@ -1,25 +1,40 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<h2>Choose Your Plan</h2>
+<h2 class="text-2xl font-bold mb-6 text-center">Pricing</h2>
 
-<div class="card">
-    <h3>Basic</h3>
-    <p>£10/month</p>
-    <button class="btn" onclick="subscribe('basic')">Choose</button>
-</div>
+<div class="space-y-4">
 
-<div class="card">
-    <h3>Pro</h3>
-    <p>£25/month</p>
-    <button class="btn" onclick="subscribe('pro')">Choose</button>
-</div>
+    <!-- Basic -->
+    <div class="bg-card p-5 rounded-2xl shadow">
+        <h3 class="text-lg font-semibold">Basic</h3>
+        <p class="text-2xl mt-2">£10</p>
+        <button onclick="subscribe('basic')"
+            class="w-full mt-4 py-2 rounded-xl bg-accent">
+            Choose
+        </button>
+    </div>
 
-<div class="card">
-    <h3>Premium</h3>
-    <p>£50/month</p>
-    <button class="btn" onclick="subscribe('premium')">Choose</button>
+    <!-- Pro -->
+    <div class="bg-card p-5 rounded-2xl shadow border border-accent">
+        <h3 class="text-lg font-semibold">Pro</h3>
+        <p class="text-2xl mt-2">£25</p>
+        <button onclick="subscribe('pro')"
+            class="w-full mt-4 py-2 rounded-xl bg-gradient-to-r from-accent to-accent2">
+            Choose
+        </button>
+    </div>
+
+    <!-- Premium -->
+    <div class="bg-card p-5 rounded-2xl shadow">
+        <h3 class="text-lg font-semibold">Premium</h3>
+        <p class="text-2xl mt-2">£50</p>
+        <button onclick="subscribe('premium')"
+            class="w-full mt-4 py-2 rounded-xl bg-accent2 text-black">
+            Choose
+        </button>
+    </div>
+
 </div>
 
 <script src="https://js.stripe.com/v3/"></script>

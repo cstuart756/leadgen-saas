@@ -3,81 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>LeadFlow</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0f172a;
-            color: #f1f5f9;
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: "#0f172a",
+                        card: "#1e293b",
+                        accent: "#6366f1",
+                        accent2: "#22d3ee"
+                    }
+                }
+            }
         }
-
-        .container {
-            padding: 16px;
-            max-width: 500px;
-            margin: auto;
-        }
-
-        .card {
-            background: #1e293b;
-            padding: 16px;
-            border-radius: 16px;
-            margin-bottom: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #6366f1, #22d3ee);
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            border-radius: 10px;
-            border: none;
-            background: #334155;
-            color: white;
-        }
-
-        h1, h2, h3 {
-            margin: 0 0 10px 0;
-        }
-
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .badge {
-            background: #22d3ee;
-            padding: 5px 10px;
-            border-radius: 10px;
-            font-size: 12px;
-        }
-
-        a {
-            color: #22d3ee;
-            text-decoration: none;
-        }
-    </style>
+    </script>
 </head>
 
-<body>
-    <div class="container">
+<body class="bg-bg text-gray-100 min-h-screen">
+
+    <div class="max-w-md mx-auto p-4">
         {% block content %}{% endblock %}
     </div>
+
 </body>
 </html>

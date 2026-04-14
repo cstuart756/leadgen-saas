@@ -1,19 +1,29 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<h2>Contact {{ user.username }}</h2>
+<h2 class="text-2xl font-bold mb-4 text-center">
+    Contact {{ user.username }}
+</h2>
 
-<div class="card">
-    <form method="POST">
+<div class="bg-card p-6 rounded-2xl shadow-xl">
+
+    <form method="POST" class="space-y-4">
         {% csrf_token %}
 
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" required></textarea>
+        <input name="name" placeholder="Your Name"
+            class="w-full p-3 rounded-xl bg-gray-700">
 
-        <button class="btn">Send Message</button>
+        <input name="email" type="email" placeholder="Your Email"
+            class="w-full p-3 rounded-xl bg-gray-700">
+
+        <textarea name="message" placeholder="Your Message"
+            class="w-full p-3 rounded-xl bg-gray-700"></textarea>
+
+        <button class="w-full py-3 rounded-xl bg-gradient-to-r from-accent to-accent2">
+            Send Message
+        </button>
     </form>
+
 </div>
 
 {% endblock %}

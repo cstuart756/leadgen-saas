@@ -1,20 +1,28 @@
 {% extends "base.html" %}
-
 {% block content %}
-<h1>LeadFlow</h1>
 
-<div class="card">
-    <h2>Create Account</h2>
+<h1 class="text-3xl font-bold mb-6 text-center">LeadFlow</h1>
 
-    <form method="POST">
+<div class="bg-card p-6 rounded-2xl shadow-xl">
+    <h2 class="text-xl font-semibold mb-4">Create Account</h2>
+
+    <form method="POST" class="space-y-4">
         {% csrf_token %}
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
 
-        <button class="btn">Sign Up</button>
+        <input name="username" placeholder="Username"
+            class="w-full p-3 rounded-xl bg-gray-700">
+
+        <input name="email" type="email" placeholder="Email"
+            class="w-full p-3 rounded-xl bg-gray-700">
+
+        <input name="password" type="password" placeholder="Password"
+            class="w-full p-3 rounded-xl bg-gray-700">
+
+        <button class="w-full py-3 rounded-xl bg-gradient-to-r from-accent to-accent2">
+            Sign Up
+        </button>
     </form>
 
-    <p>Already have an account? <a href="/login/">Login</a></p>
 </div>
+
 {% endblock %}
