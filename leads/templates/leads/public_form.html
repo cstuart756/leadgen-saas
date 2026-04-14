@@ -1,0 +1,17 @@
+<div class="public-lead-form">
+  <h2>Contact {{ user.username }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Your Name" required class="input" />
+    <input type="email" name="email" placeholder="Your Email" required class="input" />
+    <textarea name="message" placeholder="Your Message" required class="input"></textarea>
+    <button type="submit" class="btn-gradient">Send</button>
+  </form>
+</div>
+<style>
+body { background: #0f172a; color: #f1f5f9; font-family: 'Inter', sans-serif; }
+.public-lead-form { background: rgba(30,41,59,0.85); border-radius: 16px; box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37); padding: 2rem; max-width: 400px; margin: 2rem auto; }
+.input { width: 100%; margin-bottom: 1rem; padding: 0.75rem; border-radius: 12px; border: none; background: #1e293b; color: #f1f5f9; }
+.btn-gradient { background: linear-gradient(135deg, #6366f1, #22d3ee); border: none; border-radius: 12px; padding: 12px 24px; color: white; font-weight: bold; cursor: pointer; transition: box-shadow 0.2s; box-shadow: 0 2px 8px rgba(99,102,241,0.2); }
+.btn-gradient:hover { box-shadow: 0 4px 16px rgba(34,211,238,0.3); }
+</style>
